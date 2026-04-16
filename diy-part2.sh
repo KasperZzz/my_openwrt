@@ -18,3 +18,17 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+# Выбираем архитектуру и модель Cudy WR3000 v1
+echo "CONFIG_TARGET_mediatek=y" >> .config
+echo "CONFIG_TARGET_mediatek_filogic=y" >> .config
+echo "CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_wr3000-v1=y" >> .config
+
+# Включаем Passwall, Zapret и Sing-box
+echo "CONFIG_PACKAGE_luci-app-passwall=y" >> .config
+echo "CONFIG_PACKAGE_sing-box=y" >> .config
+echo "CONFIG_PACKAGE_zapret=y" >> .config
+echo "CONFIG_PACKAGE_luci-app-zapret=y" >> .config
+
+# Экономим место (удаляем лишнее для 16МБ)
+echo "CONFIG_PACKAGE_wpad-basic-mbedtls=y" >> .config
+echo "# CONFIG_PACKAGE_wpad-openssl is not set" >> .config
